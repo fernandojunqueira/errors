@@ -76,6 +76,14 @@ func BadGateway(err error, title string) *ErrorRFC9457 {
 	}
 }
 
+func Unauthorized(err error, titile string) *ErrorRFC9457 {
+	return &ErrorRFC9457{
+		Status: http.StatusUnauthorized,
+		Detail: err.Error(),
+		Title:  titile,
+	}
+}
+
 func New(text string) error {
 	return &errorString{text}
 }
