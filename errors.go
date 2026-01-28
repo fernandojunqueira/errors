@@ -46,6 +46,7 @@ func (e *ErrorRFC9457) Error() string {
 
 func InternalServerError(err error, title string) *ErrorRFC9457 {
 	return &ErrorRFC9457{
+		Type:   "about:blank",
 		Status: http.StatusInternalServerError,
 		Detail: err.Error(),
 		Title:  title,
@@ -54,6 +55,7 @@ func InternalServerError(err error, title string) *ErrorRFC9457 {
 
 func NotFoundError(err error, title string) *ErrorRFC9457 {
 	return &ErrorRFC9457{
+		Type:   "about:blank",
 		Status: http.StatusNotFound,
 		Detail: err.Error(),
 		Title:  title,
@@ -62,6 +64,7 @@ func NotFoundError(err error, title string) *ErrorRFC9457 {
 
 func BadRequest(err error, title string) *ErrorRFC9457 {
 	return &ErrorRFC9457{
+		Type:   "about:blank",
 		Status: http.StatusBadRequest,
 		Detail: err.Error(),
 		Title:  title,
@@ -70,6 +73,7 @@ func BadRequest(err error, title string) *ErrorRFC9457 {
 
 func BadGateway(err error, title string) *ErrorRFC9457 {
 	return &ErrorRFC9457{
+		Type:   "about:blank",
 		Status: http.StatusBadGateway,
 		Detail: err.Error(),
 		Title:  title,
@@ -78,9 +82,19 @@ func BadGateway(err error, title string) *ErrorRFC9457 {
 
 func Unauthorized(err error, titile string) *ErrorRFC9457 {
 	return &ErrorRFC9457{
+		Type:   "about:blank",
 		Status: http.StatusUnauthorized,
 		Detail: err.Error(),
 		Title:  titile,
+	}
+}
+
+func MakeErrorRFC9457(errorType string, status int, detail string, title string) *ErrorRFC9457 {
+	return &ErrorRFC9457{
+		Type:   errorType,
+		Status: status,
+		Detail: detail,
+		Title:  title,
 	}
 }
 
